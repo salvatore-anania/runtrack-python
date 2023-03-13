@@ -1,28 +1,26 @@
 import sys
-str="abbbbba"
-liste=list(str)
-test=list(str)
-poidmot=0
-pond=1
-proche=0
-motproche=''
-plusproche=sys.maxsize
-for h in range(len(str)-1,-1,-1):
-    poidmot+=(ord(test[h])-96)*pond
-    pond*=10
-for mouv in range(len(str)):
-    del test[mouv]
-    for motdif in range(len(test)+1):
-        poidnew=0
-        pond=1
-        test.insert(motdif,str[mouv])
-        for j in range(len(test)-1,-1,-1):
-            poidnew+=(ord(test[j])-96)*pond
+
+def calculpoid(mot):
+    pond=1
+    poid=0
+    for j in range(len(mot)-1,-1,-1):
+            poid+=(ord(mot[j])-96)*pond
             pond*=10
-        proche=poidnew-poidmot
-        if poidnew>poidmot and proche<plusproche and poidnew-poidmot!=0 :
+    return poid
+            
+str="abbbbba"
+test=list(str)
+plusproche=sys.maxsize
+poidmot=calculpoid(str)
+for lettermove in range(len(str)):
+    del test[lettermove]
+    for motdif in range(len(test)+1):
+        test.insert(motdif,str[lettermove])
+        poidnew=calculpoid(test)
+        proximite=poidnew-poidmot
+        if poidnew>poidmot and proximite<plusproche and proximite!=0 :
             motproche=''.join(test)
-            plusproche=proche
+            plusproche=proximite
         del test[motdif]
-    test.insert(mouv,str[mouv])
+    test.insert(lettermove,str[lettermove])
 print(motproche)

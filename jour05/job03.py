@@ -1,14 +1,8 @@
-def draw_diag(x):
-    print("+"+"-"*(x)+"+")
-    for i in range(x):
-        print("|",end='')
-        for j in range(x):
-            if j==x-i-1:
-                print(" ",end='')
-            else:
-                print("#",end='')
-        print("|")
-    print("+"+"-"*(x)+"+")
+def draw_diag(hauteur):
+    print("+"+"-"*(hauteur)+"+")
+    for ligne in range(hauteur):
+        print("|"+"#"*(hauteur-ligne-1)+" "+"#"*ligne+"|")
+    print("+"+"-"*(hauteur)+"+")
 
 
 print("entrez une hauteur :")

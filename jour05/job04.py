@@ -1,16 +1,16 @@
 def decale(message, index):
     alpha="abcdefghijklmnopqrstuvwxyz"
     messag=list(message)
-    notfind=True
+    find=False
     for i in range(len(messag)):
         for j in range(len(alpha)):
-            if alpha[j]==messag[i] and notfind==True :
-                notfind=False
-                if j+index<27:
+            if alpha[j]==messag[i] and not find :
+                find=True
+                if j+index<26:
                     messag[i]=alpha[j+index]
                 else:
                     messag[i]=alpha[(j+index)%26]
-        notfind=True
+        find=False
     return ''.join(messag)
 
-print(decale("test",1))
+print(decale("test",8))
